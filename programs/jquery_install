@@ -1,0 +1,69 @@
+#!/usr/bin/env php
+<?php
+/**
+ * Install jQuery JS file into Dynacase context dir
+ *
+ * @author Anakeen 2011
+ * @license http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License
+ */
+$WIFF_ROOT = getenv("WIFF_ROOT");
+if ($WIFF_ROOT === false) {
+    print "WIFF_ROOT environment variable is not set!\n";
+    exit(1);
+}
+
+$WIFF_CONTEXT_ROOT = getenv("WIFF_CONTEXT_ROOT");
+if ($WIFF_CONTEXT_ROOT === false) {
+    print "WIFF_CONTEXT_ROOT environment variable not set!\n";
+    exit(1);
+}
+
+set_include_path(get_include_path() . PATH_SEPARATOR . $WIFF_CONTEXT_ROOT . PATH_SEPARATOR . "$WIFF_ROOT/include");
+
+$jquery_js = $argv[1];
+if ($jquery_js === NULL) {
+    print sprintf("Missing jQuery file argument\n");
+    exit(1);
+}
+$jquery_js = realpath($jquery_js);
+if (!is_file($jquery_js)) {
+    print sprintf("jQuery JS file not found at '%s'\n", $jquery_js);
+    exit(1);
+}
+
+// Create jquery sub-dir if it does not exists
+if( ! is_dir('jquery') ) {
+    $ret = mkdir('jquery');
+    if ($ret === false) {
+        print sprintf("Could not create 'jquery' directory in 'lib'\n");
+        exit(1);
+    }
+    clearstatcache();
+}
+
+// Copy new jQuery JS file
+$content = file_get_contents($jquery_js);
+if( $content === false ) {
+    print sprintf("Error reading content from '%s'", $jquery_js);
+    exit(1);
+}
+$tmpfile = tempnam('jquery', 'jquery.tmp');
+if ($tmpfile === false) {
+    print sprintf("Could not create temporary file in 'jquery'\n");
+    exit(1);
+}
+$ret = file_put_contents($tmpfile, $content);
+if( $ret === false ) {
+  print sprintf("Error writing to temporary file '%s'", $tmpfile);
+  unlink($tmpfile);
+  exit(1);
+}
+$ret = rename($tmpfile, 'jquery/jquery.js');
+if( $ret === false ) {
+  print sprintf("Error moving '%s' to 'jquery/jquery.js'", $tmpfile);
+  unlink($tmpfile);
+  exit(1);
+}
+
+exit(0);
+?>

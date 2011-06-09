@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<module name="dynacase-jquery" version="@VERSION@" release="@RELEASE@" basecomponent="yes" >
+
+    <description>jQuery is a fast and concise JavaScript Library that simplifies HTML document traversing, event handling, animating, and Ajax interactions for rapid web development.</description>
+
+    <replaces>
+        <module name="dynacase-sizzle" />
+    </replaces>
+
+    <parameters>
+        <param name="jquery_url" label="Sizzle download URL" type="text" default="http://ftp.dynacase.org/third-party/jquery-@VERSION@.min.js" />
+    </parameters>
+
+    <pre-install>
+    </pre-install>
+
+    <pre-upgrade>
+    </pre-upgrade>
+
+    <post-install>
+        <download href="@jquery_url" action="programs/jquery_install">
+            <label lang="en">Download and install jQuery</label>
+        </download>
+    </post-install>
+
+    <post-upgrade>
+        <download href="@jquery_url" action="programs/jquery_install">
+            <label lang="en">Download and install jQuery</label>
+        </download>
+    </post-upgrade>
+
+</module>
