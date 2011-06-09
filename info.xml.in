@@ -8,7 +8,7 @@
     </replaces>
 
     <parameters>
-        <param name="jquery_url" label="Sizzle download URL" type="text" default="http://ftp.dynacase.org/third-party/jquery-@VERSION@.min.js" />
+        <param name="jquery_url" label="jQuery download URL" type="text" default="http://ftp.dynacase.org/third-party/jquery-@VERSION@.min.js" />
     </parameters>
 
     <pre-install>
