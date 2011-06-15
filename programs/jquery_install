@@ -20,7 +20,20 @@ if ($WIFF_CONTEXT_ROOT === false) {
 
 set_include_path(get_include_path() . PATH_SEPARATOR . $WIFF_CONTEXT_ROOT . PATH_SEPARATOR . "$WIFF_ROOT/include");
 
-$jquery_js = $argv[1];
+$jquery_type = 'min';
+if( count($argv) >= 3 ) {
+  if( $argv[1] == 'min' || $argv[1] == 'debug' ) {
+    $jquery_type = $argv[1];
+  } else {
+    print sprintf("Unknown jquery type '%s'", $argv[1]);
+    exit(1);
+  }
+  $jquery_js = $argv[2];
+} else {
+  $jquery_type = 'min';
+  $jquery_js = $argv[1];
+}
+
 if ($jquery_js === NULL) {
     print sprintf("Missing jQuery file argument\n");
     exit(1);
@@ -58,9 +71,13 @@ if( $ret === false ) {
   unlink($tmpfile);
   exit(1);
 }
-$ret = rename($tmpfile, 'jquery/jquery.js');
+$jquery_file = 'jquery/jquery.js';
+if( $jquery_type == 'debug' ) {
+  $jquery_file ='jquery/jquery-debug.js';
+}
+$ret = rename($tmpfile, $jquery_file);
 if( $ret === false ) {
-  print sprintf("Error moving '%s' to 'jquery/jquery.js'", $tmpfile);
+  print sprintf("Error moving '%s' to '%s'", $tmpfile, $jquery_file);
   unlink($tmpfile);
   exit(1);
 }

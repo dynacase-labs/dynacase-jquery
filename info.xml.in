@@ -8,7 +8,8 @@
     </replaces>
 
     <parameters>
-        <param name="jquery_url" label="jQuery download URL" type="text" default="http://ftp.dynacase.org/third-party/jquery-@VERSION@.min.js" />
+      <param name="jquery_min_url" label="jQuery (min) download URL" type="text" default="http://ftp.dynacase.org/third-party/jquery-@VERSION@.min.js" />
+      <param name="jquery_debug_url" label="jQuery (debug) download URL" type="text" default="http://ftp.dynacase.org/third-party/jquery-@VERSION@.js" />
     </parameters>
 
     <pre-install>
@@ -18,14 +19,20 @@
     </pre-upgrade>
 
     <post-install>
-        <download href="@jquery_url" action="programs/jquery_install">
-            <label lang="en">Download and install jQuery</label>
+        <download href="@jquery_min_url" action="programs/jquery_install min">
+            <label lang="en">Download and install jQuery (min)</label>
+        </download>
+        <download href="@jquery_debug_url" action="programs/jquery_install debug">
+            <label lang="en">Download and install jQuery (debug)</label>
         </download>
     </post-install>
 
     <post-upgrade>
-        <download href="@jquery_url" action="programs/jquery_install">
-            <label lang="en">Download and install jQuery</label>
+        <download href="@jquery_min_url" action="programs/jquery_install min">
+            <label lang="en">Download and install jQuery (min)</label>
+        </download>
+        <download href="@jquery_debug_url" action="programs/jquery_install debug">
+            <label lang="en">Download and install jQuery (debug)</label>
         </download>
     </post-upgrade>
 
