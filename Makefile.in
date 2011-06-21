@@ -2,7 +2,7 @@ PACKAGE = @PACKAGE@
 VERSION=@VERSION@
 utildir=@PUBRULE@
 pubdir=@prefix@
-appname=@APPNAME@
+appname=lib/@APPNAME@
 
 pages_not_xml=info.xml
 pages_not_php=fam2po.php po2js.php
@@ -19,10 +19,13 @@ $(pubdir)/programs/jquery_install: programs/jquery_install $(pubdir)/programs
 	cp $< $@
 	chmod a+x $@
 
-$(pubdir)/$(appname): $(pubdir)
+$(pubdir)/lib: $(pubdir)
+	mkdir -p $@
+
+$(pubdir)/$(appname): $(pubdir)/lib
 	mkdir -p $@
 
 $(pubdir)/$(appname)/.htaccess: htaccess $(pubdir)/$(appname)
-	cp htaccess $(pubdir)/jquery/.htaccess
+	cp htaccess $@
 
 publish: $(pubdir)/programs/jquery_install $(pubdir)/$(appname)/.htaccess

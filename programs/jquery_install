@@ -45,10 +45,10 @@ if (!is_file($jquery_js)) {
 }
 
 // Create jquery sub-dir if it does not exists
-if( ! is_dir('jquery') ) {
-    $ret = mkdir('jquery');
+if( ! is_dir('lib/jquery') ) {
+  $ret = mkdir('lib/jquery', true);
     if ($ret === false) {
-        print sprintf("Could not create 'jquery' directory in 'lib'\n");
+        print sprintf("Could not create 'lib/jquery' directory\n");
         exit(1);
     }
     clearstatcache();
@@ -60,7 +60,7 @@ if( $content === false ) {
     print sprintf("Error reading content from '%s'", $jquery_js);
     exit(1);
 }
-$tmpfile = tempnam('jquery', 'jquery.tmp');
+$tmpfile = tempnam('lib/jquery', 'jquery.tmp');
 if ($tmpfile === false) {
     print sprintf("Could not create temporary file in 'jquery'\n");
     exit(1);
@@ -71,9 +71,9 @@ if( $ret === false ) {
   unlink($tmpfile);
   exit(1);
 }
-$jquery_file = 'jquery/jquery.js';
+$jquery_file = 'lib/jquery/jquery.js';
 if( $jquery_type == 'debug' ) {
-  $jquery_file ='jquery/jquery-debug.js';
+  $jquery_file ='lib/jquery/jquery-debug.js';
 }
 $ret = rename($tmpfile, $jquery_file);
 if( $ret === false ) {
