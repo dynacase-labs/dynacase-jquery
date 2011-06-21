@@ -8,8 +8,8 @@
     </replaces>
 
     <parameters>
-      <param name="jquery_min_url" label="jQuery (min) download URL" type="text" default="http://ftp.dynacase.org/third-party/jquery-@VERSION@.min.js" volatile="yes" />
-      <param name="jquery_debug_url" label="jQuery (debug) download URL" type="text" default="http://ftp.dynacase.org/third-party/jquery-@VERSION@.js" volatile="yes" />
+      <param name="jquery_min_url" label="jQuery (min) download URL" type="text" default="http://ftp.dynacase.org/third-party/jquery-@VERSION@.min.js" volatile="yes" onupgrade="W" />
+      <param name="jquery_debug_url" label="jQuery (debug) download URL" type="text" default="http://ftp.dynacase.org/third-party/jquery-@VERSION@.js" volatile="yes" onupgrade="W" />
     </parameters>
 
     <pre-install>
