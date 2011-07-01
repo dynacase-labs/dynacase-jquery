@@ -3,6 +3,10 @@
 
     <description>jQuery is a fast and concise JavaScript Library that simplifies HTML document traversing, event handling, animating, and Ajax interactions for rapid web development.</description>
 
+    <requires>
+      <installer version="1.1.0" comp="ge"/>
+    </requires>
+
     <replaces>
         <module name="dynacase-sizzle" />
     </replaces>
