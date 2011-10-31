@@ -1,9 +1,9 @@
-Dynacase ExtJs  
+Dynacase JQuery  
 =================
 
-Extjs packaging 
+JQuery packaging 
 
-[Extjs documentation](http://www.sencha.com/products/extjs/)
+[JQuery documentation](http://jquery.com/)
 
 
 
