@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<module name="dynacase-jquery" version="@VERSION@" release="@RELEASE@">
+
+    <description>jQuery is a fast and concise JavaScript Library that simplifies HTML document traversing, event handling, animating, and Ajax interactions for rapid web development.</description>
+
+    <requires>
+      <installer version="1.1.0" comp="ge"/>
+    </requires>
+
+    <replaces>
+        <module name="dynacase-sizzle" />
+    </replaces>
+
+    <parameters>
+      <param name="jquery_min_url" label="jQuery (min) download URL" type="text" default="http://ftp.dynacase.org/third-party/jquery-@VERSION@.min.js" volatile="yes" onupgrade="W" />
+      <param name="jquery_debug_url" label="jQuery (debug) download URL" type="text" default="http://ftp.dynacase.org/third-party/jquery-@VERSION@.js" volatile="yes" onupgrade="W" />
+    </parameters>
+
+    <pre-install>
+    </pre-install>
+
+    <pre-upgrade>
+    </pre-upgrade>
+
+    <post-install>
+        <download href="@jquery_min_url" action="programs/jquery_install min">
+            <label lang="en">Download and install jQuery (min)</label>
+        </download>
+        <download href="@jquery_debug_url" action="programs/jquery_install debug">
+            <label lang="en">Download and install jQuery (debug)</label>
+        </download>
+    </post-install>
+
+    <post-upgrade>
+        <download href="@jquery_min_url" action="programs/jquery_install min">
+            <label lang="en">Download and install jQuery (min)</label>
+        </download>
+        <download href="@jquery_debug_url" action="programs/jquery_install debug">
+            <label lang="en">Download and install jQuery (debug)</label>
+        </download>
+    </post-upgrade>
+
+</module>
