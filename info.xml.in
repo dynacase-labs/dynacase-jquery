@@ -1,7 +1,11 @@
 <?xml version="1.0"?>
-<module name="dynacase-jquery" version="@VERSION@" release="@RELEASE@">
+<module name="dynacase-jquery-installer" version="@VERSION@" release="@RELEASE@">
 
     <description>jQuery is a fast and concise JavaScript Library that simplifies HTML document traversing, event handling, animating, and Ajax interactions for rapid web development.</description>
+
+    <replaces>
+      <module name="dynacase-jquery" />
+    </replaces>
 
     <requires>
       <installer version="1.1.0" comp="ge"/>
@@ -9,6 +13,7 @@
 
     <replaces>
         <module name="dynacase-sizzle" />
+        <module name="dynacase-jquery" />
     </replaces>
 
     <parameters>

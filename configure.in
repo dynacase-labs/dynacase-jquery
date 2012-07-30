@@ -5,7 +5,7 @@ VERSION=`cat VERSION`
 AC_SUBST(RELEASE)
 RELEASE=`cat RELEASE`
 AC_SUBST(PACKAGE)
-PACKAGE=dynacase-jquery
+PACKAGE=dynacase-jquery-installer
 AC_SUBST(APPNAME)
 APPNAME=jquery
 
