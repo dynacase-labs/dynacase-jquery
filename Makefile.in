@@ -1,31 +1,19 @@
-PACKAGE = @PACKAGE@
 VERSION=@VERSION@
-utildir=@PUBRULE@
-pubdir=@prefix@
-appname=lib/@APPNAME@
+RELEASE=@RELEASE@
+PACKAGE=@PACKAGE@
 
-pages_not_xml=info.xml
-pages_not_php=fam2po.php po2js.php
+webinst:
+	mkdir -p tmp/src/programs tmp/tmp/
+	cp src/programs/jquery_install tmp/src/programs/jquery_install${PACKAGE}
+	tar -C tmp/src -zcf tmp/content.tar.gz .
+	mv info.xml tmp/info.xml
+	tar -C tmp -zcf ${PACKAGE}-${VERSION}-${RELEASE}.webinst info.xml content.tar.gz
+	rm -rf tmp
 
-include $(utildir)/PubRule
-
-$(pubdir):
-	mkdir -p $@
-
-$(pubdir)/programs: $(pubdir)
-	mkdir -p $@
-
-$(pubdir)/programs/jquery_install: programs/jquery_install $(pubdir)/programs
-	cp $< $@
-	chmod a+x $@
-
-$(pubdir)/lib: $(pubdir)
-	mkdir -p $@
-
-$(pubdir)/$(appname): $(pubdir)/lib
-	mkdir -p $@
-
-$(pubdir)/$(appname)/.htaccess: htaccess $(pubdir)/$(appname)
-	cp htaccess $@
-
-publish: $(pubdir)/programs/jquery_install $(pubdir)/$(appname)/.htaccess
+clean:
+	rm -Rf tmp
+	rm configure
+	rm config.*
+	rm -Rf autom4te.cache
+	rm -f ${PACKAGE}-*.webinst
+	rm Makefile
