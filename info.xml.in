@@ -1,47 +1,25 @@
 <?xml version="1.0"?>
-<module name="dynacase-jquery-installer" version="@VERSION@" release="@RELEASE@">
+<module name="@PACKAGE@" version="@VERSION@" release="@RELEASE@" basecomponent="no">
 
     <description>jQuery is a fast and concise JavaScript Library that simplifies HTML document traversing, event handling, animating, and Ajax interactions for rapid web development.</description>
 
-    <replaces>
-      <module name="dynacase-jquery" />
-    </replaces>
-
-    <requires>
-      <installer version="1.1.0" comp="ge"/>
-    </requires>
-
-    <replaces>
-        <module name="dynacase-sizzle" />
-        <module name="dynacase-jquery" />
-    </replaces>
-
     <parameters>
-      <param name="jquery_min_url" label="jQuery (min) download URL" type="text" default="http://ftp.dynacase.org/third-party/jquery-@VERSION@.min.js" volatile="yes" onupgrade="W" />
-      <param name="jquery_debug_url" label="jQuery (debug) download URL" type="text" default="http://ftp.dynacase.org/third-party/jquery-@VERSION@.js" volatile="yes" onupgrade="W" />
+        <param name="jquery" label="jquery download URL" type="text"
+               volatile="yes" onupgrade="W"
+               default="ftp://ftp.anakeen.com/third-party/jquery-@VERSION@.zip"/>
     </parameters>
 
-    <pre-install>
-    </pre-install>
-
-    <pre-upgrade>
-    </pre-upgrade>
-
     <post-install>
-        <download href="@jquery_min_url" action="programs/jquery_install min">
-            <label lang="en">Download and install jQuery (min)</label>
-        </download>
-        <download href="@jquery_debug_url" action="programs/jquery_install debug">
-            <label lang="en">Download and install jQuery (debug)</label>
+        <download href="@jquery" action="programs/jquery_install@PACKAGE@">
+            <label lang="en">Download and install jquery @VERSION@
+            </label>
         </download>
     </post-install>
 
     <post-upgrade>
-        <download href="@jquery_min_url" action="programs/jquery_install min">
-            <label lang="en">Download and install jQuery (min)</label>
-        </download>
-        <download href="@jquery_debug_url" action="programs/jquery_install debug">
-            <label lang="en">Download and install jQuery (debug)</label>
+        <download href="@jquery" action="programs/jquery_install@PACKAGE@">
+            <label lang="en">Download and install jquery @VERSION@
+            </label>
         </download>
     </post-upgrade>
 
