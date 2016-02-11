@@ -6,7 +6,7 @@
     <parameters>
         <param name="jquery" label="jquery download URL" type="text"
                volatile="yes" onupgrade="W"
-               default="http://ftp.anakeen.com/third-party/jquery-@VERSION@.zip"/>
+               default="http://ftp.dynacase.org/third-party/jquery-@VERSION@.zip"/>
     </parameters>
 
     <post-install>
