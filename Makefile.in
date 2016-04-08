@@ -7,7 +7,8 @@ webinst:
 	cp src/programs/jquery_install tmp/src/programs/jquery_install${PACKAGE}
 	tar -C tmp/src -zcf tmp/content.tar.gz .
 	mv info.xml tmp/info.xml
-	tar -C tmp -zcf ${PACKAGE}-${VERSION}-${RELEASE}.webinst info.xml content.tar.gz
+	cp LICENSE tmp/
+	tar -C tmp -zcf ${PACKAGE}-${VERSION}-${RELEASE}.webinst info.xml content.tar.gz LICENSE
 	rm -rf tmp
 
 clean:
